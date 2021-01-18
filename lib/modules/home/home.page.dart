@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:Bismillah/utils/app_preference.dart';
 import 'package:Bismillah/widget/dialog.utils.dart';
 import 'package:Bismillah/widget/top.navigation.dart';
 import 'package:adhan/adhan.dart';
@@ -17,15 +18,18 @@ class HomePageView extends StatefulWidget {
 class HomePageViewSate extends State<HomePageView> {
   final location = new Location();
   String locationError;
+  CalculationMethod _method = CalculationMethod.dubai;
   PrayerTimes prayerTimes;
   geo.Address address;
+  Coordinates coordinates;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: NavBarView(() {
-        DialogUtils.showSettings(context, _buildDialogContent());
+      appBar: NavBarView(() async {
+        await DialogUtils.showSettings(context);
+        _refreshCalculationMethod();
       }),
       body: Stack(
         children: [
@@ -48,6 +52,20 @@ class HomePageViewSate extends State<HomePageView> {
         ],
       ),
     );
+  }
+
+  _refreshCalculationMethod() {
+    AppPreference.getCalculationMethod().then((value) {
+      if (value != null) {
+        setState(() {
+          _method = value;
+          if (coordinates != null) {
+            prayerTimes = PrayerTimes(coordinates,
+                DateComponents.from(DateTime.now()), _method.getParameters());
+          }
+        });
+      }
+    });
   }
 
   _boxDecoration() {
@@ -105,11 +123,12 @@ class HomePageViewSate extends State<HomePageView> {
           }
         });
         setState(() {
-          prayerTimes = PrayerTimes(
-              Coordinates(locationData.latitude, locationData.longitude),
-              DateComponents.from(DateTime.now()),
-              CalculationMethod.karachi.getParameters());
+          coordinates =
+              Coordinates(locationData.latitude, locationData.longitude);
+          prayerTimes = PrayerTimes(coordinates,
+              DateComponents.from(DateTime.now()), _method.getParameters());
         });
+        _refreshCalculationMethod();
       } else {
         setState(() {
           locationError = "Couldn't Get Your Location!";
@@ -157,6 +176,7 @@ class HomePageViewSate extends State<HomePageView> {
   _buildPrayerList() {
     if (prayerTimes != null) {
       String method = _getMethod();
+      print(prayerTimes.currentPrayer());
       return Column(
         children: [
           Padding(
@@ -173,12 +193,18 @@ class HomePageViewSate extends State<HomePageView> {
             style: TextStyle(fontSize: 12),
           ),
           SizedBox(height: 8),
-          _buildRow('Fajr', prayerTimes.fajr),
-          _buildRow('Sunrise', prayerTimes.sunrise),
-          _buildRow('Dhuhr', prayerTimes.dhuhr),
-          _buildRow('Asr', prayerTimes.asr),
-          _buildRow('Maghrib', prayerTimes.maghrib),
-          _buildRow('Isha ', prayerTimes.isha),
+          _buildRow('Fajr', prayerTimes.fajr,
+              prayerTimes.nextPrayer() == Prayer.fajr),
+          _buildRow('Sunrise', prayerTimes.sunrise,
+              prayerTimes.nextPrayer() == Prayer.sunrise),
+          _buildRow('Dhuhr', prayerTimes.dhuhr,
+              prayerTimes.nextPrayer() == Prayer.dhuhr),
+          _buildRow(
+              'Asr', prayerTimes.asr, prayerTimes.nextPrayer() == Prayer.asr),
+          _buildRow('Maghrib', prayerTimes.maghrib,
+              prayerTimes.nextPrayer() == Prayer.maghrib),
+          _buildRow('Isha ', prayerTimes.isha,
+              prayerTimes.nextPrayer() == Prayer.isha),
           if (address != null)
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -200,7 +226,7 @@ class HomePageViewSate extends State<HomePageView> {
         child: Center(child: Text('Waiting for Your Location...')));
   }
 
-  _buildRow(String title, DateTime data) {
+  _buildRow(String title, DateTime data, bool isNextPrayer) {
     return Column(
       children: [
         Row(
@@ -210,7 +236,7 @@ class HomePageViewSate extends State<HomePageView> {
               title,
               style: NeumorphicStyle(
                 depth: 1,
-                color: Colors.black,
+                color: isNextPrayer ? Color(0xFFFED61F) : Colors.black,
               ),
               textAlign: TextAlign.center,
               textStyle: NeumorphicTextStyle(
@@ -222,6 +248,8 @@ class HomePageViewSate extends State<HomePageView> {
               child: Text(
                 DateFormat.jm().format(data),
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: isNextPrayer ? Color(0xFFFED61F) : Colors.white),
               ),
             )
           ],
@@ -270,22 +298,5 @@ class HomePageViewSate extends State<HomePageView> {
       default:
     }
     return method;
-  }
-
-  Widget _buildDialogContent() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-            ],
-          ),
-        )
-      ],
-    );
   }
 }
