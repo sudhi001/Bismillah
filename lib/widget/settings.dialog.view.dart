@@ -2,17 +2,18 @@ import 'dart:ui';
 
 import 'package:Bismillah/utils/app_preference.dart';
 import 'package:adhan/adhan.dart';
+import 'package:buy_me_a_coffee_widget/buy_me_a_coffee_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class SettingsDialogView extends StatefulWidget {
-  SettingsDialogView();
   @override
   _SettingsDialogViewState createState() => _SettingsDialogViewState();
 }
 
 class _SettingsDialogViewState extends State<SettingsDialogView> {
   CalculationMethod _method = CalculationMethod.dubai;
+  BuyMeACoffeeThemeData theme = TealTheme();
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,16 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                 height: 16,
               ),
               _buildCalculationMethod(),
-         
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: 100,
+                  child:  BuyMeACoffeeWidget(
+                      sponsorID: "sudhis",
+                      theme: theme,
+                  ),
+                ),
+              )
             ],
           ),
         )

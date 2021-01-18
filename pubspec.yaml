@@ -16,6 +16,7 @@ dependencies:
   flutter_neumorphic: ^3.0.3
   location: ^3.0.2
   intl: ^0.16.1
+  buy_me_a_coffee_widget: ^1.0.1
   geocoder: ^0.2.1
 dev_dependencies:
   flutter_test:
