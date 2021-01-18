@@ -19,7 +19,6 @@ class HomePageViewSate extends State<HomePageView> {
   String locationError;
   PrayerTimes prayerTimes;
   geo.Address address;
-  int _groupValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
