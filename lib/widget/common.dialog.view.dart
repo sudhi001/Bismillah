@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+/// Common Dialog interface to show a unique bottmsheet design
+/// throughout the application.
 class CommonDialogView extends StatefulWidget {
   final Widget childWidget;
   CommonDialogView(this.childWidget);
@@ -18,7 +20,7 @@ class _CommonDialogViewState extends State<CommonDialogView> {
           depth: -5,
           boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(32)),
           color: Colors.white),
-        child: widget.childWidget,
+      child: widget.childWidget,
       padding: EdgeInsets.all(18),
     );
   }

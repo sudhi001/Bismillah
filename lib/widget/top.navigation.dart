@@ -1,3 +1,5 @@
+import 'package:Bismillah/res/app_constants.dart';
+import 'package:Bismillah/res/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -17,17 +19,13 @@ class NavBarView extends PreferredSize {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             NeumorphicText(
-              "Bismillah",
+              AppStringConstants.applicationName,
               style: NeumorphicStyle(
                 depth: 4,
                 color: Color(0xFF061F58),
               ),
               textAlign: TextAlign.center,
-              textStyle: NeumorphicTextStyle(
-                fontFamily: "Bismillah",
-                fontWeight: FontWeight.bold,
-                fontSize: 70,
-              ),
+              textStyle: AppTextStyle.appTitleStyle,
             ),
             NeumorphicButton(
               style: NeumorphicStyle(

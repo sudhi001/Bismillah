@@ -1,10 +1,9 @@
 import 'dart:ui';
-
+import 'package:Bismillah/res/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ModalNavBarView extends PreferredSize {
-
   final String title;
   ModalNavBarView(this.title);
   @override
@@ -16,27 +15,26 @@ class ModalNavBarView extends PreferredSize {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title,
+          Text(
+            title,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.normal,
-              fontSize: 18,
-            ),
+            style: AppTextStyle.modalTitleStyle,
           ),
           NeumorphicButton(
-            
-            style: NeumorphicStyle(
-              lightSource: LightSource.bottom,
-              depth: -2,
-              shape: NeumorphicShape.flat,
-              boxShape: NeumorphicBoxShape.stadium(),
-            ),
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            child: Icon(Icons.close,color: Colors.white,),
-            onPressed: (){
-              Navigator.pop(context);
-            }),
+              style: NeumorphicStyle(
+                lightSource: LightSource.bottom,
+                depth: -2,
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.stadium(),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              child: Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:Bismillah/utils/extensions.dart';
 import 'package:adhan/adhan.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,15 +34,3 @@ class AppPreference {
   }
 }
 
-extension CalculationMethodExtension on CalculationMethod {
-  String toShortString() {
-    return this.toString().split('.').last;
-  }
-}
-
-CalculationMethod enumValueFromString<CalculationMethodT>(
-        String key, Iterable<CalculationMethod> values) =>
-    values.firstWhere(
-      (v) => v != null && key == v.toShortString(),
-      orElse: () => null,
-    );

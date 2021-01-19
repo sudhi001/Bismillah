@@ -1,12 +1,14 @@
+import 'package:Bismillah/res/app_constants.dart';
 import 'package:Bismillah/modules/home/home.page.dart';
+import 'package:Bismillah/res/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent, // transparent status bar
+    statusBarColor: Colors.transparent, 
   ));
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
@@ -19,18 +21,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicApp(
       debugShowCheckedModeBanner: false,
-      title: 'Bismillah',
+      title: AppStringConstants.applicationName,
       themeMode: ThemeMode.light,
-      theme: NeumorphicThemeData(
-        baseColor: Color(0xFF04AB9A),
-        lightSource: LightSource.topLeft,
-        depth: 3,
-      ),
-      darkTheme: NeumorphicThemeData(
-        baseColor: Color(0xFF007974),
-        lightSource: LightSource.topLeft,
-        depth: 3,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: HomePageView(),
     );
   }

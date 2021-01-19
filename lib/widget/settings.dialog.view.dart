@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:Bismillah/res/app_constants.dart';
 import 'package:Bismillah/utils/app_preference.dart';
 import 'package:adhan/adhan.dart';
 import 'package:buy_me_a_coffee_widget/buy_me_a_coffee_widget.dart';
@@ -49,7 +50,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
                 child: SizedBox(
                   width: 100,
                   child:  BuyMeACoffeeWidget(
-                      sponsorID: "sudhis",
+                      sponsorID: AppStringConstants.buyACoffeeOwner,
                       theme: theme,
                   ),
                 ),
@@ -66,7 +67,7 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
       children: [
         Expanded(
           child: Text(
-            "Calculation Method",
+            AppStringConstants.calculationMethod,
             style: TextStyle(color: Colors.black),
           ),
           flex: 1,
