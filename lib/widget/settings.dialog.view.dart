@@ -38,9 +38,12 @@ class _SettingsDialogViewState extends State<SettingsDialogView> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(
-                height: 16,
+                height: 32,
               ),
               _buildCalculationMethod(),
+               SizedBox(
+                height: 32,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(

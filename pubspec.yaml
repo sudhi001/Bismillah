@@ -21,7 +21,23 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.8.0"
+  flutter_native_splash: ^0.1.9
+  flutter_launcher_name: "^0.0.1"
+  
+flutter_launcher_name:
+  name: "Prayer Time"
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/logo.png"
+
+flutter_native_splash:
+  image: images/logo.png
+  color: "000000"
+  fill: false
+  android_disable_fullscreen: false
 
 flutter:
 

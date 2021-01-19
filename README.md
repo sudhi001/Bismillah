@@ -4,6 +4,14 @@
 Every Morning is beautiful when we talk to Allah first
 ## Development in progress
 
+## Update Splash Image
+flutter pub  run flutter_native_splash:create
+
+## Update Launcher Icon
+flutter pub run flutter_launcher_icons:main
+
+## Update Launcher name 
+flutter pub run flutter_launcher_name:main
 
 ## License
 
