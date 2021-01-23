@@ -3,7 +3,7 @@
 
 | Master Release |
 | -------------- |
-| ![Demo App PlayStore Release](https://github.com/sudhi001/Bismillah/badge.svg) |
+| ![Bismillah PlayStore Release](https://github.com/sudhi001/Bismillah/workflows/Bimillah%20App%20PlayStore%20Release/badge.svg) |
 
 <img src="doc/ScreenShot1.jpeg"  width=200/> ![](doc/doc/ScreenShot1.jpeg)
 
