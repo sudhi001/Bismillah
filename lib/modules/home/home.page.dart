@@ -56,8 +56,8 @@ class HomePageViewSate extends State<HomePageView> {
     AppPreference.getCalculationMethod().then((value) {
       if (value != null) {
         setState(() {
-          prayerTimeHandler.changeMethod(value,(){
-            setState(() { });
+          prayerTimeHandler.changeMethod(value, () {
+            setState(() {});
           });
         });
       }
@@ -136,7 +136,7 @@ class HomePageViewSate extends State<HomePageView> {
             child: Text(
               prayerTimeHandler.address,
               textAlign: TextAlign.right,
-              style:AppTextStyle.prayerTile,
+              style: AppTextStyle.prayerTile,
             ),
           ),
         ],
