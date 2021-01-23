@@ -1,4 +1,10 @@
 # Bismillah (Islamic Prayer Time application)
+
+
+| Master Release |
+| -------------- |
+| ![Demo App PlayStore Release](https://github.com/sudhi001/Bismillah/badge.svg) |
+
 <img src="doc/ScreenShot1.jpeg"  width=200/> ![](doc/doc/ScreenShot1.jpeg)
 
 Every Morning is beautiful when we talk to Allah first
